@@ -1,0 +1,21 @@
+#content-main {
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 40px;
+}
+#content-main .layui-tab-item {
+    display: none;
+    height: 100%;
+}
+.indent-left-nav{
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+}
+.indent-left-nav .layui-icon{
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台管理页面</title>
+    <link rel="stylesheet" href="/static/layui-v2.5.5/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/layui_admin.css">
+    <script src="/static/layui-v2.5.5/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  id="left_nav">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" new_url="one/one">选项一</a></dd>
+                        <dd><a href="javascript:;" new_url="two/two">选项二</a></dd>
+                        <dd><a href="javascript:;">选项三</a></dd>
+                        <dd><a href="">跳转项</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+        <span class="indent-left-nav">
+           <i class="layui-icon" >&#xe668;</i>
+        </span>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="layui-tab layui-tab-brief " lay-filter="main_tab" lay-allowclose="true" style="margin:0">
+            <ul class="layui-tab-title">
+                <li class="layui-this">预览</li>
+                <li>查看代码</li>
+                <li>帮助</li>
+            </ul>
+            <div class="layui-tab-content" id="content-main">
+                <div class="layui-tab-item layui-show">默认宽度是相对于父元素100%适应的，你也可以固定宽度。</div>
+                <div class="layui-tab-item"></div>
+                <div class="layui-tab-item">3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery, element = layui.element;
+        $("#left_nav a").click(function(){
+            new_url = this.getAttribute("new_url");
+            title = this.textContent;
+            tab_id = new Date().getTime()
+            element.tabAdd('main_tab', {
+                title: title
+                ,content: '<iframe scrolling="auto" frameborder="0"  src="html_page?new_url='+new_url+'" style="width:100%;height:100%;"></iframe>'
+                ,id: tab_id
+             });
+             element.tabChange('main_tab', tab_id);
+        });
+
+        $(".indent-left-nav .layui-ico").click(function(){
+
+        });
+    });
+
+
+
+</script>
+</body>
+</html>
