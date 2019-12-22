@@ -46,24 +46,32 @@
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree"  id="left_nav">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">minister-部长</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" new_url="one/one">选项一</a></dd>
-                        <dd><a href="javascript:;" new_url="two/two">选项二</a></dd>
-                        <dd><a href="javascript:;">选项三</a></dd>
-                        <dd><a href="">跳转项</a></dd>
+                        <dd><a href="javascript:;" new_url="minister/order_list">工单列表</a></dd>
+                        <dd><a href="javascript:;" new_url="minister/order_issue">工单发放</a></dd>
+                        <dd><a href="javascript:;" new_url="minister/order_assessment">工单评定</a></dd>
+                        <dd><a href="javascript:;" new_url="minister/order_statistics">成绩统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">group-部长</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;" new_url="group/order_list">本组工单</a></dd>
+                        <dd><a href="javascript:;" new_url="group/order_issue">本组进度</a></dd>
+                        <dd><a href="javascript:;" new_url="group/order_assessment">本组评定</a></dd>
+                        <dd><a href="javascript:;" new_url="group/order_statistics">本组统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                 <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">employee-员工</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" new_url="employee/order_list">我的工单</a></dd>
+                        <dd><a href="javascript:;" new_url="employee/order_issue">本组进度</a></dd>
+                        <dd><a href="javascript:;" new_url="employee/order_assessment">本组评定</a></dd>
+                        <dd><a href="javascript:;" new_url="employee/order_statistics">本组统计</a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
         <span class="indent-left-nav">
@@ -73,16 +81,16 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div class="layui-tab layui-tab-brief " lay-filter="main_tab" lay-allowclose="true" style="margin:0">
+        <div class="layui-tab layui-tab-brief " lay-filter="main_tab" id="main_tab" lay-allowclose="true" lay-allowRefresh="true" style="margin:0">
             <ul class="layui-tab-title">
-                <li class="layui-this">预览</li>
-                <li>查看代码</li>
-                <li>帮助</li>
+<!--                <li class="layui-this">预览</li>-->
+<!--                <li>查看代码</li>-->
+<!--                <li>帮助</li>-->
             </ul>
             <div class="layui-tab-content" id="content-main">
-                <div class="layui-tab-item layui-show">默认宽度是相对于父元素100%适应的，你也可以固定宽度。</div>
-                <div class="layui-tab-item"></div>
-                <div class="layui-tab-item">3</div>
+<!--                <div class="layui-tab-item layui-show">默认宽度是相对于父元素100%适应的，你也可以固定宽度。</div>-->
+<!--                <div class="layui-tab-item"></div>-->
+<!--                <div class="layui-tab-item">3</div>-->
             </div>
         </div>
     </div>
@@ -98,17 +106,17 @@
         var $ = layui.jquery, element = layui.element;
         $("#left_nav a").click(function(){
             new_url = this.getAttribute("new_url");
-            title = this.textContent;
-            tab_id = new Date().getTime()
-            element.tabAdd('main_tab', {
-                title: title
-                ,content: '<iframe scrolling="auto" frameborder="0"  src="html_page?new_url='+new_url+'" style="width:100%;height:100%;"></iframe>'
-                ,id: tab_id
-             });
-             element.tabChange('main_tab', tab_id);
-        });
-
-        $(".indent-left-nav .layui-ico").click(function(){
+            new_url_flag = true
+            $("#main_tab .layui-tab-title li").each(function(i, v){if (new_url==v.getAttribute("lay-id")){new_url_flag=false;return false;}});
+            if(new_url_flag){
+                title = this.textContent;
+                element.tabAdd('main_tab', {
+                    title: title
+                    ,content: '<iframe scrolling="auto" frameborder="0"  src="html_page?new_url='+new_url+'" style="width:100%;height:100%;"></iframe>'
+                    ,id: new_url
+                });
+            }
+            element.tabChange('main_tab', new_url);
 
         });
     });
